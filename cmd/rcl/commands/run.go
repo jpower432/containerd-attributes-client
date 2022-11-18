@@ -21,6 +21,8 @@ import (
 	"github.com/urfave/cli"
 )
 
+// RunOptions configure options when pulling image references and running
+// containers
 type RunOptions struct {
 	*RootOptions
 	ID            string
@@ -36,6 +38,11 @@ type RunOptions struct {
 	Mounts        []string
 	ContainerArgs []string
 	TTY           bool
+	Debug         bool
+	PlainHTTP     bool
+	SkipTLSVerify bool
+	// Fetch the image from remote
+	Fetch bool
 }
 
 // NewRunCmd creates a new cobra.Command for the run subcommand.
@@ -65,6 +72,10 @@ func NewRunCmd(options *RootOptions) *cobra.Command {
 	cmd.Flags().StringVar(&o.CGroup, "cgroup", o.CGroup, "cgroup path (To disable use of cgroup, set to \"\" explicitly)")
 	cmd.Flags().StringVar(&o.FIFODir, "fifo-dir", o.FIFODir, "directory used for storing IO FIFOs")
 	cmd.Flags().BoolVarP(&o.TTY, "tty", "t", o.TTY, "allocate a TTY for the container")
+	cmd.Flags().BoolVar(&o.Debug, "debug", o.Debug, "debug moder")
+	cmd.Flags().BoolVar(&o.PlainHTTP, "plain-http", o.PlainHTTP, "use HTTP to connect to registries")
+	cmd.Flags().BoolVar(&o.SkipTLSVerify, "skip-tls-verify", o.SkipTLSVerify, "skip TLS validation when connecting to registries")
+	cmd.Flags().BoolVar(&o.Fetch, "fetch", o.Fetch, "fetch the image reference from remote registry")
 
 	return cmd
 }
@@ -89,6 +100,25 @@ func (o *RunOptions) Run(ctx context.Context) error {
 		return err
 	}
 	defer cancel()
+
+	ctx, done, err := client.WithLease(ctx)
+	if err != nil {
+		return err
+	}
+	defer done(ctx)
+
+	if o.Fetch {
+		config, err := NewFetchConfig(ctx, *o)
+		if err != nil {
+			return err
+		}
+
+		_, err = Fetch(ctx, client, o.Reference, config)
+		if err != nil {
+			return err
+		}
+	}
+
 	container, err := NewContainer(ctx, client, *o)
 	if err != nil {
 		return err

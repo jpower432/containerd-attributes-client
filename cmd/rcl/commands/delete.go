@@ -11,6 +11,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// DeleteOptions configures options for container deletion.
 type DeleteOptions struct {
 	*RootOptions
 	ID string

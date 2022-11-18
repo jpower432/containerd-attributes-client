@@ -61,6 +61,7 @@ github.com/containerd/containerd/archive
 github.com/containerd/containerd/archive/compression
 github.com/containerd/containerd/cio
 github.com/containerd/containerd/cmd/ctr/commands
+github.com/containerd/containerd/cmd/ctr/commands/content
 github.com/containerd/containerd/cmd/ctr/commands/tasks
 github.com/containerd/containerd/containers
 github.com/containerd/containerd/content
@@ -84,6 +85,7 @@ github.com/containerd/containerd/oci
 github.com/containerd/containerd/pkg/cap
 github.com/containerd/containerd/pkg/dialer
 github.com/containerd/containerd/pkg/kmutex
+github.com/containerd/containerd/pkg/progress
 github.com/containerd/containerd/pkg/userns
 github.com/containerd/containerd/platforms
 github.com/containerd/containerd/plugin
@@ -126,6 +128,9 @@ github.com/davecgh/go-spew/spew
 # github.com/docker/go-events v0.0.0-20190806004212-e31b211e4f1c
 ## explicit
 github.com/docker/go-events
+# github.com/docker/go-units v0.4.0
+## explicit
+github.com/docker/go-units
 # github.com/emicklei/go-restful/v3 v3.8.0
 ## explicit; go 1.13
 github.com/emicklei/go-restful/v3

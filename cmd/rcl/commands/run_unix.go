@@ -1,3 +1,6 @@
+//go:build !windows
+// +build !windows
+
 package commands
 
 import (
@@ -8,11 +11,11 @@ import (
 	"github.com/opencontainers/runtime-spec/specs-go"
 
 	"github.com/jpower432/runc-attribute-wrapper/aritfact"
+	"github.com/jpower432/runc-attribute-wrapper/aritfact/options"
 )
 
 // NewContainer creates a new container
 func NewContainer(ctx context.Context, client *containerd.Client, runOpts RunOptions) (containerd.Container, error) {
-
 	var (
 		opts    []oci.SpecOpts
 		cOpts   []containerd.NewContainerOpts
@@ -52,12 +55,12 @@ func NewContainer(ctx context.Context, client *containerd.Client, runOpts RunOpt
 		}
 	}
 
-	opts = append(opts, WithImageConfig(image))
+	opts = append(opts, options.WithImageConfig(image))
 	cOpts = append(cOpts, containerd.WithSnapshotter(snapshotter))
 
 	cOpts = append(cOpts, containerd.WithNewSnapshot(runOpts.ID, image))
 
-	cOpts = append(cOpts, WithImageStopSignal(image, "SIGTERM"))
+	cOpts = append(cOpts, options.WithImageStopSignal(image, "SIGTERM"))
 
 	if len(runOpts.ContainerArgs) > 0 {
 		opts = append(opts, oci.WithProcessArgs(runOpts.ContainerArgs...))

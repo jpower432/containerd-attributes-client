@@ -41,7 +41,7 @@ func ApplyArtifactsWithOpts(ctx context.Context, artifacts []Artifact, sn snapsh
 			return "", fmt.Errorf("failed to stat snapshot %s: %w", chainID, err)
 		}
 
-		if err := applyArtfacts(ctx, artifacts, chain, sn, a, nil, applyOpts); err != nil && !errdefs.IsAlreadyExists(err) {
+		if err := applyArtifacts(ctx, artifacts, chain, sn, a, nil, applyOpts); err != nil && !errdefs.IsAlreadyExists(err) {
 			return "", err
 		}
 	}
@@ -65,7 +65,7 @@ func ApplyArtifactWithOpts(ctx context.Context, artifact Artifact, chain []diges
 			return false, fmt.Errorf("failed to stat snapshot %s: %w", chainID, err)
 		}
 
-		if err := applyArtfacts(ctx, []Artifact{artifact}, append(chain, artifact.Blob.Digest), sn, a, opts, applyOpts); err != nil {
+		if err := applyArtifacts(ctx, []Artifact{artifact}, append(chain, artifact.Blob.Digest), sn, a, opts, applyOpts); err != nil {
 			if !errdefs.IsAlreadyExists(err) {
 				return false, err
 			}
@@ -76,7 +76,7 @@ func ApplyArtifactWithOpts(ctx context.Context, artifact Artifact, chain []diges
 	return applied, nil
 }
 
-func applyArtfacts(ctx context.Context, artifacts []Artifact, chain []digest.Digest, sn snapshots.Snapshotter, a diff.Applier, opts []snapshots.Opt, applyOpts []diff.ApplyOpt) error {
+func applyArtifacts(ctx context.Context, artifacts []Artifact, chain []digest.Digest, sn snapshots.Snapshotter, a diff.Applier, opts []snapshots.Opt, applyOpts []diff.ApplyOpt) error {
 	var (
 		parent   = identity.ChainID(chain[:len(chain)-1])
 		chainID  = identity.ChainID(chain)
@@ -94,7 +94,7 @@ func applyArtfacts(ctx context.Context, artifacts []Artifact, chain []digest.Dig
 		mounts, err = sn.Prepare(ctx, key, parent.String(), opts...)
 		if err != nil {
 			if errdefs.IsNotFound(err) && len(artifacts) > 1 {
-				if err := applyArtfacts(ctx, artifacts[:len(artifacts)-1], chain[:len(chain)-1], sn, a, opts, applyOpts); err != nil {
+				if err := applyArtifacts(ctx, artifacts[:len(artifacts)-1], chain[:len(chain)-1], sn, a, opts, applyOpts); err != nil {
 					if !errdefs.IsAlreadyExists(err) {
 						return err
 					}

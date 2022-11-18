@@ -11,7 +11,6 @@ import (
 	"github.com/containerd/containerd/defaults"
 	"github.com/containerd/containerd/errdefs"
 	"github.com/containerd/containerd/images"
-	"github.com/containerd/containerd/oci"
 	"github.com/containerd/containerd/platforms"
 	"github.com/containerd/containerd/snapshots"
 	"github.com/opencontainers/go-digest"
@@ -20,7 +19,7 @@ import (
 	v2 "github.com/uor-framework/uor-client-go/nodes/descriptor/v2"
 )
 
-// Image describes an image used by containers
+// Image describes an image used by containers.
 type Image interface {
 	// Name of the image
 	Name() string
@@ -52,16 +51,9 @@ type Image interface {
 	Spec(ctx context.Context) (ocispec.Image, error)
 }
 
-type usageOptions struct {
-	manifestLimit *int
-	manifestOnly  bool
-	snapshots     bool
-}
-
 var _ = (Image)(&image{})
-var _ = (oci.Image)(&image{})
 
-// NewImage returns a client image object from the metadata image
+// NewImage returns a client image object from the metadata image.
 func NewImage(client *containerd.Client, i images.Image, cI containerd.Image) Image {
 	return &image{
 		client:   client,
