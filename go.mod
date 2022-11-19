@@ -11,6 +11,7 @@ require (
 	github.com/opencontainers/runtime-spec v1.0.3-0.20210326190908-1c3f411f0417
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.6.1
+	github.com/uor-framework/collection-spec v0.0.0-20221119003036-9b35a7906c8b
 	github.com/uor-framework/uor-client-go v0.3.0
 	github.com/urfave/cli v1.22.7
 	k8s.io/cli-runtime v0.25.4
@@ -43,6 +44,7 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/btree v1.1.2 // indirect
 	github.com/google/gnostic v0.5.7-v3refs // indirect
+	github.com/google/go-containerregistry v0.11.0 // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect
 	github.com/google/uuid v1.3.0 // indirect
@@ -67,7 +69,6 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/uor-framework/collection-spec v0.0.0-20221110141352-8a26930decbf // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
@@ -101,4 +102,4 @@ require (
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
-replace github.com/uor-framework/uor-client-go v0.3.0 => /home/jenniferpower/repos/redhat/client
+replace github.com/uor-framework/uor-client-go => github.com/jpower432/client v0.0.0-20221119004758-7e64a5ddbc46

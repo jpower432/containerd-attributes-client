@@ -185,6 +185,9 @@ github.com/google/gnostic/extensions
 github.com/google/gnostic/jsonschema
 github.com/google/gnostic/openapiv2
 github.com/google/gnostic/openapiv3
+# github.com/google/go-containerregistry v0.11.0
+## explicit; go 1.17
+github.com/google/go-containerregistry/pkg/v1/types
 # github.com/google/gofuzz v1.2.0
 ## explicit; go 1.12
 github.com/google/gofuzz
@@ -289,13 +292,17 @@ github.com/spf13/cobra
 # github.com/spf13/pflag v1.0.5
 ## explicit; go 1.12
 github.com/spf13/pflag
-# github.com/uor-framework/collection-spec v0.0.0-20221110141352-8a26930decbf
+# github.com/uor-framework/collection-spec v0.0.0-20221119003036-9b35a7906c8b
 ## explicit; go 1.18
 github.com/uor-framework/collection-spec/specs-go/v1alpha1
-# github.com/uor-framework/uor-client-go v0.3.0 => /home/jenniferpower/repos/redhat/client
+# github.com/uor-framework/uor-client-go v0.3.0 => github.com/jpower432/client v0.0.0-20221119004758-7e64a5ddbc46
 ## explicit; go 1.18
 github.com/uor-framework/uor-client-go/attributes
+github.com/uor-framework/uor-client-go/content
 github.com/uor-framework/uor-client-go/model
+github.com/uor-framework/uor-client-go/model/traversal
+github.com/uor-framework/uor-client-go/nodes/collection
+github.com/uor-framework/uor-client-go/nodes/collection/loader
 github.com/uor-framework/uor-client-go/nodes/descriptor
 github.com/uor-framework/uor-client-go/nodes/descriptor/v2
 github.com/uor-framework/uor-client-go/schema
@@ -634,6 +641,7 @@ k8s.io/utils/strings/slices
 oras.land/oras-go/v2
 oras.land/oras-go/v2/content
 oras.land/oras-go/v2/content/file
+oras.land/oras-go/v2/content/memory
 oras.land/oras-go/v2/errdef
 oras.land/oras-go/v2/internal/cas
 oras.land/oras-go/v2/internal/copyutil
@@ -744,3 +752,4 @@ sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.3.0
 ## explicit; go 1.12
 sigs.k8s.io/yaml
+# github.com/uor-framework/uor-client-go => github.com/jpower432/client v0.0.0-20221119004758-7e64a5ddbc46

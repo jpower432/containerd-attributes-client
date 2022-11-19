@@ -15,7 +15,8 @@ import (
 	ocispec "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/sirupsen/logrus"
 	"oras.land/oras-go/v2/content"
-	"oras.land/oras-go/v2/content/file"
+
+	"github.com/jpower432/runc-attribute-wrapper/aritfact/content/file"
 )
 
 type artifactApplier struct {
