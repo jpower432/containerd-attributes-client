@@ -52,7 +52,7 @@ func NewRunCmd(options *RootOptions) *cobra.Command {
 	}
 
 	cmd := &cobra.Command{
-		Use:           "run IMG",
+		Use:           "run IMG NAME",
 		SilenceErrors: false,
 		SilenceUsage:  false,
 		Args:          cobra.MinimumNArgs(2),
