@@ -36,3 +36,9 @@ rcl run -t localhost:5001/myartifact:latest mycontainer --fetch
 ```bash
 rcl delete mycontainer
 ```
+
+# TODO
+
+- Add support for linked artifacts
+- Allow artifacts to be stored with different file attributes in committed snapshots
+- Allow index manifest attribute overrides
