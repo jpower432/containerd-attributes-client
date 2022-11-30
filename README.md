@@ -1,4 +1,4 @@
-# runc-attributes-wrapper
+# containerd-attributes-client
 A containerd client for attribute based chroot construction.
 
 ## Required components
